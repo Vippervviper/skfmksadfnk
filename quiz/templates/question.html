@@ -37,7 +37,7 @@
 
   {% if progress %}
   <div style="float: right;">
-    {% trans "Вопрос" %} {{ progress.0|add:1 }} {% trans "из" %} {{ progress.1 }}
+    {% trans "Вопрос" %} {{ progress.0|add:"1" }} {% trans "из" %} {{ progress.1 }}
   </div>
   {% endif %}
 
@@ -62,16 +62,16 @@
       {% endfor %}
     </ul>
 
-    {% if progress.0|add:1 == progress.1 %}
-      <input type="submit" value="{% trans 'Отправить' %}" class="btn btn-large btn-block btn-warning">
+    {% if progress.0|add:"1" == progress.1 %}
+      <input type="submit" value="{% trans 'Отправить' %}" class="next-button">
     {% else %}
-      <input type="submit" value="{% trans 'Далее' %}" class="btn btn-large btn-block btn-warning">
+      <input type="submit" value="{% trans 'Далее' %}" class="next-button">
     {% endif %}
+
+    <hr>
   </form>
 
 {% endif %}
-
-<hr>
 
 {% endblock %}
 

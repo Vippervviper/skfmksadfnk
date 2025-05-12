@@ -1,15 +1,35 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml" xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
-        
+
+
 <head>
   <meta charset="utf-8">
+  {% block extrahead %}
+    {{ block.super }}
+    <style>
+      .next-button {
+        background: #7c3aed;
+        color: white;
+        font-weight: bold;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: background 0.2s ease;
+      }
+      .next-button:hover {
+        background: #5b21b6;
+      }
+    </style>
+  {% endblock %}
   <title>{% trans "ТестПлатформа" %} | {% block title %}{% endblock %}</title>
   <meta name="description" content="{% block description %}{% endblock %}">
-
+  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
     crossorigin="anonymous">
-</head>   
+</head>
   
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
