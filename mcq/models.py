@@ -35,33 +35,31 @@ class MCQQuestion(Question):
         return Answer.objects.get(id=guess).content
 
     class Meta:
-        verbose_name = "Multiple Choice Question"
-        verbose_name_plural = "Multiple Choice Questions"
+        verbose_name = "Вопрос"
+        verbose_name_plural = "Вопросы"
 
 
 class Answer(models.Model):
-    question = models.ForeignKey(MCQQuestion, verbose_name='Question', on_delete=models.CASCADE)
+    question = models.ForeignKey(MCQQuestion, verbose_name='Вопрос', on_delete=models.CASCADE)
 
-    content = models.CharField(max_length=1000,
-                               blank=False,
-                               help_text="Enter the answer text that \
-                                            you want displayed",
-                               verbose_name="Content")
+    content = models.CharField(
+        max_length=1000,
+        blank=False,
+        help_text="Введите текст варианта ответа",
+        verbose_name="Содержание"
+    )
 
-    correct = models.BooleanField(blank=False,
-                                  default=False,
-                                  help_text="Is this a correct answer?",
-                                  verbose_name="Correct")
+    correct = models.BooleanField(
+        blank=False,
+        default=False,
+        help_text="Это правильный ответ?",
+        verbose_name="Правильный"
+    )
 
     def __str__(self):
         return self.content
 
-
     class Meta:
-        verbose_name = "Answer"
-        verbose_name_plural = "Answers"
-
-
-
-
+        verbose_name = "Ответ"
+        verbose_name_plural = "Ответы"
 
