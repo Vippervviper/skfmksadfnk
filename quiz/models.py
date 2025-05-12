@@ -176,6 +176,11 @@ class Progress(models.Model):
     score = models.CharField(validators=[validate_comma_separated_integer_list], max_length=1024,
                                               verbose_name=_("Score"))
 
+
+    class Meta:
+        verbose_name = _("Прогресс пользователя")
+        verbose_name_plural = _("Записи прогресса")
+
     correct_answer = models.CharField(max_length=10, verbose_name=_('Correct Answers'))
 
     wrong_answer = models.CharField(max_length=10, verbose_name=_('Wrong Answers')) 
@@ -377,6 +382,8 @@ class Sitting(models.Model):
     objects = SittingManager()
 
     class Meta:
+        verbose_name = _("Сессия")
+        verbose_name_plural = _("Сессии")
         permissions = (("view_sittings", _("Can see completed exams.")),)
 
     def get_first_question(self):
