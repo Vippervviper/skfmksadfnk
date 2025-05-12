@@ -1,6 +1,7 @@
 import re
 import json
 import csv
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.core.exceptions import ValidationError, ImproperlyConfigured
 from django.core.validators import MaxValueValidator, validate_comma_separated_integer_list
@@ -36,8 +37,8 @@ class Category(models.Model):
     objects = CategoryManager()
 
     class Meta:
-        verbose_name = _("Category")
-        verbose_name_plural = _("Categories")
+        verbose_name = _("Категория")
+        verbose_name_plural = _("Категория")
 
     def __str__(self):
         return self.category
@@ -130,8 +131,8 @@ class Quiz(models.Model):
         super(Quiz, self).save(force_insert, force_update, *args, **kwargs)
 
     class Meta:
-        verbose_name = _("Quiz")
-        verbose_name_plural = _("Quizzes")
+        verbose_name = _("Тест")
+        verbose_name_plural = _("Тесты")
 
     def __str__(self):
         return self.title

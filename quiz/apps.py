@@ -4,5 +4,5 @@ from django.utils.translation import gettext_lazy as _   # «ленивый» п
 
 class QuizConfig(AppConfig):
     name = 'quiz'            # путь к пакету
-    verbose_name = _('Викторины')   # так заголовок будет отображаться в админке
+    verbose_name = _('Работа с тестами')   # так заголовок будет отображаться в админке
 
