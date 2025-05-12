@@ -37,8 +37,8 @@ class Category(models.Model):
     objects = CategoryManager()
 
     class Meta:
-        verbose_name = _("Категория")
-        verbose_name_plural = _("Категория")
+        verbose_name = _("Категории")
+        verbose_name_plural = _("Категории")
 
     def __str__(self):
         return self.category
@@ -188,8 +188,8 @@ class Progress(models.Model):
     objects = ProgressManager()
 
     class Meta:
-        verbose_name = _("User Progress")
-        verbose_name_plural = _("User progress records")
+        verbose_name = _("Прогресс")
+        verbose_name_plural = _("Прогрессы пользователей")
 
     @property
     def list_all_cat_scores(self):
