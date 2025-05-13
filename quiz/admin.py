@@ -3,24 +3,28 @@ from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.utils.translation import ugettext_lazy as _
 
-# Русскоязычные заголовки админки
-admin.site.site_header = _("Панель управления ТестПлатформа")
-admin.site.site_title  = _("Админка ТестПлатформа")
-admin.site.index_title = _("Добро пожаловать")
-
-# Register your models here.
 from .models import Quiz, Category, Question, Progress, CSVUpload
 from mcq.models import MCQQuestion, Answer
 from quiz.models import Sitting
+
+
+@admin.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    # Убираем возможность удаления и ссылку «Удалить?»
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 class CSVUploadsAdmin(admin.ModelAdmin):
     model = CSVUpload
     list_display = ('title',)
 
+# …далее остальные ваши регистрации…
+
 
 class AnswerInline(admin.TabularInline):
     model = Answer
+    can_delete = False
 
 
 class QuizAdminForm(forms.ModelForm):
