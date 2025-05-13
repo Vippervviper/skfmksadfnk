@@ -56,12 +56,12 @@ class Quiz(models.Model):
 
     url = models.SlugField(
         max_length=60, blank=False,
-        help_text=_("URL:"),
-        verbose_name=_("Сылка для пользователя"))
+        help_text=_("Сылка для пользователя"),
+        verbose_name=_("URL:"))
 
     category = models.ForeignKey(
         Category, null=True, blank=True,
-        verbose_name=_("Category"), on_delete=models.CASCADE)
+        verbose_name=_("Категория"), on_delete=models.CASCADE)
 
     random_order = models.BooleanField(
         blank=False, default=False,
