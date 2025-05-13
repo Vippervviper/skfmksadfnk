@@ -64,11 +64,11 @@ class Quiz(models.Model):
         verbose_name=_("Категория"), on_delete=models.CASCADE)
 
     random_order = models.BooleanField(
-        blank=False, default=False,
-        verbose_name=_("Random Order"),
-        help_text=_("Display the questions in "
-                    "a random order or as they "
-                    "are set?"))
+    blank=False,
+    default=False,
+    verbose_name=_("Случайный порядок"),
+    help_text=_("Отображать вопросы в случайном порядке или в заданной последовательности")
+    ) 
 
     max_questions = models.PositiveIntegerField(
         blank=True, null=True, verbose_name=_("Max Questions"),
