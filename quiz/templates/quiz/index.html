@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <style>
+    .module {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .module h2 {
+      margin-top: 0;
+      color: #374151;
+      font-size: 1.5em;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 8px;
+    }
+    .quick-start a.button {
+      display: inline-block;
+      background: #7c3aed;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background .2s;
+    }
+    .quick-start a.button:hover {
+      background: #6d28d9;
+    }
+    .news-item {
+      margin-bottom: 16px;
+      padding-left: 16px;
+      border-left: 4px solid #7c3aed;
+    }
+    .news-item header h3 {
+      margin: 0;
+      font-size: 1.25em;
+      color: #1f2937;
+    }
+    .news-item header small {
+      color: #6b7280;
+      font-size: 0.875em;
+      margin-left: 8px;
+    }
+    .news-item p {
+      margin: 8px 0 0;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <h1>Главная страница</h1>
+
+  {% if user.is_authenticated %}
+    <p>Имя пользователя: {{ user.username }}</p>
+    <p>Электронная почта: {{ user.email }}</p>
+  {% endif %}
+
+  <div class="module quick-start">
+    <h2>Быстрый старт</h2>
+    <p>
+      <a class="button" href="{{ quick_url }}">
+        {% if quick_url == '/quizzes/' %}
+          Начать новый тест
+        {% else %}
+          Продолжить тест
+        {% endif %}
+      </a>
+    </p>
+  </div>
+
+  <div class="module">
+    <h2>Анонсы и новости</h2>
+    {% for note in announcements %}
+      <div class="news-item">
+        <header>
+          <h3>{{ note.title }} <small>{{ note.time }}</small></h3>
+        </header>
+        <p>{{ note.content }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+
