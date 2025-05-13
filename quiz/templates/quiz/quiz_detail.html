@@ -10,7 +10,7 @@
 {% if quiz.single_attempt %}
   <h4>{% trans "Вы сможете пройти тест только один раз" %}</h4>
 {% endif %}
-<p>{{ quiz.description }}</p>
+<p>{{ quiz.description|safe }}</p>
 <p>
   <a href="{% url 'quiz_question' quiz_name=quiz.url %}">
         {% trans "Начать тест" %}
