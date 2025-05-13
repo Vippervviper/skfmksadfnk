@@ -521,37 +521,34 @@ class Question(models.Model):
     """
 
     quiz = models.ManyToManyField(Quiz,
-                                  verbose_name=_("Quiz"),
+                                  verbose_name=_("Тест"),
                                   blank=True)
 
     category = models.ForeignKey(Category,
-                                 verbose_name=_("Category"),
+                                 verbose_name=_("Категория"),
                                  blank=True,
                                  null=True, on_delete=models.CASCADE)
 
     figure = models.ImageField(upload_to='uploads/%Y/%m/%d',
                                blank=True,
                                null=True,
-                               verbose_name=_("Figure"))
+                               verbose_name=_("Изображение"))
 
     content = models.CharField(max_length=1000,
                                blank=False,
-                               help_text=_("Enter the question text that "
-                                           "you want displayed"),
-                               verbose_name=_('Question'))
+                               help_text=_("Введите текст вопроса, который будет отображён пользователю "),
+                               verbose_name=_('Вопрос'))
 
     explanation = models.TextField(max_length=2000,
                                    blank=True,
-                                   help_text=_("Explanation to be shown "
-                                               "after the question has "
-                                               "been answered."),
-                                   verbose_name=_('Explanation'))
+                                   help_text=_("Пояснение будет показано после ответа"),
+                                   verbose_name=_('Пояснение'))
 
     objects = InheritanceManager()
 
     class Meta:
-        verbose_name = _("Question")
-        verbose_name_plural = _("Questions")
+        verbose_name = _("Вопос")
+        verbose_name_plural = _("Вопросы")
         ordering = ['category']
 
     def __str__(self):
