@@ -71,50 +71,46 @@ class Quiz(models.Model):
     ) 
 
     max_questions = models.PositiveIntegerField(
-        blank=True, null=True, verbose_name=_("Max Questions"),
-        help_text=_("Number of questions to be answered on each attempt."))
+        blank=True, null=True, verbose_name=_("Макс. вопросов"),
+        help_text=_("Максимальное колличество вопросов в тесте"))
 
     answers_at_end = models.BooleanField(
         blank=False, default=False,
-        help_text=_("Correct answer is NOT shown after question."
-                    " Answers displayed at the end."),
-        verbose_name=_("Answers at end"))
+        help_text=_("Показывать правильные ответы только после завершения теста,"
+                    "а не после каждого вопроса"),
+        verbose_name=_("Ответы в конце"))
 
     exam_paper = models.BooleanField(
         blank=False, default=False,
         help_text=_("If yes, the result of each"
-                    " attempt by a user will be"
-                    " stored. Necessary for marking."),
-        verbose_name=_("Exam Paper"))
+                    " Если включено, результат каждой попытки будет сохраняться. "
+                    "Необходимо для последующей проверки."),
+        verbose_name=_("Экзаменационный режим"))
 
     single_attempt = models.BooleanField(
         blank=False, default=False,
-        help_text=_("If yes, only one attempt by"
-                    " a user will be permitted."
-                    " Non users cannot sit this exam."),
-        verbose_name=_("Single Attempt"))
+        help_text=_("Разрешить только одну попытку прохождения теста. "
+                    "Анонимные пользователи не смогут участвовать."),
+        verbose_name=_("Одна попытка"))
 
     pass_mark = models.SmallIntegerField(
         blank=True, default=0,
-        verbose_name=_("Pass Mark"),
-        help_text=_("Percentage required to pass exam."),
+        verbose_name=_("Проходной балл"),
+        help_text=_("Минимальный процент правильных ответов для зачёта"),
         validators=[MaxValueValidator(100)])
 
     success_text = models.TextField(
-        blank=True, help_text=_("Displayed if user passes."),
-        verbose_name=_("Success Text"))
+        blank=True, help_text=_("Отображается, если пользователь набрал проходной балл"),
+        verbose_name=_("Текст при успешном прохождении"))
 
     fail_text = models.TextField(
-        verbose_name=_("Fail Text"),
-        blank=True, help_text=_("Displayed if user fails."))
+        verbose_name=_("Текст при провале"),
+        blank=True, help_text=_("Отображается, если пользователь не прошёл тест"))
 
     draft = models.BooleanField(
         blank=True, default=False,
-        verbose_name=_("Draft"),
-        help_text=_("If yes, the quiz is not displayed"
-                    " in the quiz list and can only be"
-                    " taken by users who can edit"
-                    " quizzes."))
+        verbose_name=_("Черновик"),
+        help_text=_("Если включено, тест не отображается в списке и доступен только редакторам"))
 
     def save(self, force_insert=False, force_update=False, *args, **kwargs):
         self.url = re.sub('\s+', '-', self.url).lower()
